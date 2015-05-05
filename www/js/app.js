@@ -1,9 +1,37 @@
-// Ionic Starter App
+// ISBN-based item lookup and management
 
-// angular.module is a global place for creating, registering and retrieving Angular modules
-// 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
-// the 2nd parameter is an array of 'requires'
-angular.module('starter', ['ionic'])
+angular.module('app', ['ionic'])
+
+.controller('ISBNCtrl',function($scope){
+  $scope.items = {
+    '0': {title:'The Title',author:'An Author'}
+   ,'1': {title:'The Sequel',author:'Another Author'}
+  };
+
+  $scope.item = {};
+
+  $scope.clear = function(){
+    console.log("$scope.clear");
+    $scope.item = { isbn: '', author: '', title: ''};
+  };
+
+  $scope.lookup = function(){
+    console.log("$scope.lookup");
+  };
+
+  $scope.byISBN = function($event){
+    console.log("$scope.byISBN",$scope.item);
+    if ($event.which===13) {
+      var storedItem = $scope.items[$scope.item.isbn];
+      if (storedItem) {
+        console.log(storedItem);
+        $scope.item.title = storedItem.title;
+        $scope.item.author = storedItem.author;
+      }
+    }
+  };
+
+})
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
