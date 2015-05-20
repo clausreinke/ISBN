@@ -12,10 +12,8 @@
     <link href="css/ionic.app.css" rel="stylesheet">
     -->
 
-    <!-- ionic/angularjs js -->
     <script src="lib/ionic/js/ionic.bundle.js"></script>
-
-    <!-- cordova script (this will be a 404 during development) -->
+    <script src="lib/ngCordova/dist/ng-cordova.js"></script>
     <script src="cordova.js"></script>
 
     <!-- your app's js -->
@@ -46,6 +44,7 @@
             </label>
           </div>
 
+          <button type="button" ng-click="scan()">Scan ISBN</button>
           <button type="button" ng-click="lookup()">Lookup ISBN</button>
           <button type="button" ng-click="store()">Store Item</button>
           <button type="button" ng-click="clear()">Clear Item</button>

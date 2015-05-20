@@ -1,8 +1,8 @@
 // ISBN-based item lookup and management
 
-angular.module('app', ['ionic'])
+angular.module('app', ['ionic','ngCordova'])
 
-.controller('ISBNCtrl',function($scope,$http){
+.controller('ISBNCtrl',function($scope,$http,$cordovaBarcodeScanner){
 
   $scope.itemFields = ["isbn","title","author","publisher","ed","year","lang","info"];
 
@@ -32,6 +32,18 @@ angular.module('app', ['ionic'])
     $scope.item = { };
     $scope.message = undefined;
     $scope.response = undefined;
+  };
+
+  $scope.scan = function() {
+    $scope.clear();
+    $cordovaBarcodeScanner.scan()
+      .then(function(data){
+              $scope.response = data;
+              $scope.item.isbn = data.text;
+            }
+           ,function(error){
+              $scope.message = error;
+            });
   };
 
   $scope.lookup = function(){
