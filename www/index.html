@@ -23,6 +23,7 @@
       .message { color: red }
       input[type="text"] { border: thin solid lightgrey }
     //  input[type="text"].inline { display: inline }
+      .title { font-style: italic }
     </style>
 
   </head>
@@ -52,9 +53,9 @@
         <div class="response">{{response}}</div>
         <div class="message">{{message}}</div>
 
-        <ion-list>
-          <ion-item ng-repeat="(isbn,item) in items">
-            {{isbn}}: {{item}}
+        <ion-list type="card">
+          <ion-item ng-repeat="(isbn,item) in items track by $index">
+            {{$index}}. <span class="title">{{item.title}}</span>, {{item.author}}, {{item.publisher}}, {{item.ed}} {{item.year}} {{item.lang}} {{item.isbn}} {{item.info}}
           </ion-item>
         </ion-list>
       </ion-content>

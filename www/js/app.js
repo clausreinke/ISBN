@@ -4,6 +4,7 @@ var db = null; // TODO: service
 
 document.addEventListener("deviceready",function(){
   console.log("deviceready");
+  navigator.splashscreen.show(); // TODO: still seeing angular templates
   angular.bootstrap(document,['app']);
 });
 
@@ -45,6 +46,7 @@ angular.module('app', ['ionic','ngCordova'])
                                ,$http
                                ,$cordovaBarcodeScanner
                                ,$cordovaSQLite
+                               ,$cordovaSplashscreen
                                ,itemFields
                                ,ISBNtoURL){
 
@@ -70,7 +72,7 @@ angular.module('app', ['ionic','ngCordova'])
   $cordovaSQLite.execute(db,query,[])
                 .then(function(result){
                         $scope.response = result;
-                        $scope.message = "SELECT returned "+result.rows.length+" items";
+                        $scope.message = undefined;
                         if (result.rows.length>0) {
                           for (var i=0; i<result.rows.length; i++) {
                             console.log(result.rows.item(i));
@@ -183,4 +185,5 @@ angular.module('app', ['ionic','ngCordova'])
     }
   };
 
+  $cordovaSplashscreen.hide();
 });
