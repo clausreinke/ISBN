@@ -4,7 +4,6 @@ var db = null; // TODO: service
 
 document.addEventListener("deviceready",function(){
   console.log("deviceready");
-  navigator.splashscreen.show(); // TODO: still seeing angular templates
   angular.bootstrap(document,['app']);
 });
 
