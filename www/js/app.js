@@ -13,6 +13,8 @@ angular.module('app', ['ionic','ngCordova'])
 
 .constant("ISBNtoURL",{
   'worldcat' : function(isbn) {
+    // http://www.oclc.org/worldcat/policies/terms/
+    // http://xisbn.worldcat.org/xisbnadmin/doc/api.htm
     return 'http://xisbn.worldcat.org/webservices/xid/isbn/'
                 +isbn+'?method=getMetadata&format=json&fl=*&callback=JSON_CALLBACK';
   }
